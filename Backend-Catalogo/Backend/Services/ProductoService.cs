@@ -39,7 +39,7 @@ public class ProductoService : IProductoService
 
     public async Task<ProductoResponseDto> BuscarProductoPorIdAsync(int id)
     {
-        var existe = await _context.Productos.Include(p => p.Categoria).FirstAsync(p => p.Id == id);
+        var existe = await _context.Productos.Include(p => p.Categoria).FirstOrDefaultAsync(p => p.Id == id);
         if (existe is null)
             return null;
         return new ProductoResponseDto()
